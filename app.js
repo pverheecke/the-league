@@ -11,7 +11,9 @@ const collections = ['teams', 'players'];
 server.app.db = mongojs(dbConnection, collections);
 
 const plugins = [
-    require('inert')
+    require('inert'),
+    require('./api/players.js'),
+    require('./api/teams.js')
 ];
 
 server.connection({
