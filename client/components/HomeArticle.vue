@@ -1,5 +1,5 @@
 <template>
-<div id="article">
+<div class="league-container" id="article">
     <h3 id="headline">{{ headline }}</h3>
     <div id="article-body">
         <img id="article-img" :src="imgSrc">
@@ -21,8 +21,8 @@ export default {
             would relocate, but research by Craig Edwards earlier this week revealed how \
             infrequently MLB teams change addresses.) Perhaps now that baseball owners have \
             cashed in some of their investment in MLB Advanced Media, expansion talk will \
-            become more serious in the coming years. Having a new CBA agreement could also \
-            help.<a target=\"_blank\" href=\"http://www.fangraphs.com/blogs/what-would-a-post-expansion-mlb-look-like/\">Read more</a>",
+            become more serious in the coming years.\
+            <a target=\"_blank\" href=\"http://www.fangraphs.com/blogs/what-would-a-post-expansion-mlb-look-like/\">Read more</a>",
             imgSrc: "http://content.sportslogos.net/logos/54/66/full/8183_montreal_expos-jersey-1989.gif"
         }
     }
@@ -32,10 +32,11 @@ export default {
 <style lang="sass">
 #article {
     background-color: #e7e7e7;
-    max-width: 1000px;
     margin-left: 15px;
     min-height: 300px;
     padding: 1px 20px;
+    max-width: 950px;
+    border-radius: 10px;
     a {
         margin-left: 10px;
     }

@@ -17,6 +17,7 @@ import Players from './pages/Players.vue'
 import PendingTransactions from './pages/PendingTransactions.vue'
 import ProposeTrade from './pages/ProposeTrade.vue'
 import TransactionHistory from './pages/TransactionHistory.vue'
+import Schedule from './pages/Schedule.vue'
 import Standings from './pages/Standings.vue'
 import LiveScoring from './pages/LiveScoring.vue'
 
@@ -28,6 +29,7 @@ const routes = [
     {path: '/pending-transactions', component: PendingTransactions},
     {path: '/propose-trade', component: ProposeTrade},
     {path: '/transaction-history', component: TransactionHistory},
+    {path: '/schedule', component: Schedule},
     {path: '/standings', component: Standings},
     {path: '/live-scoring', component: LiveScoring},
 ];
@@ -51,5 +53,6 @@ body {
 }
 #body {
     padding: 50px 0;
+    margin-top: 15px;
 }
 </style>

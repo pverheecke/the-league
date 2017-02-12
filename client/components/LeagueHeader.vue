@@ -34,6 +34,9 @@
                         <li><router-link to="/transaction-history">Transaction History</router-link></li>
                     </ul>
                 </li>
+                <router-link tag="li" to="/schedule">
+                    <a>Schedule</a>
+                </router-link>
                 <router-link tag="li" to="/standings">
                     <a>Standings</a>
                 </router-link>
@@ -61,6 +64,7 @@
 .navbar-default {
     background-color: #0d4575;
     border: none;
+    margin-top: 7px;
     .navbar-nav .dropdown-menu>li>a {
         color: #555;
     }
@@ -82,9 +86,14 @@
     }
     .navbar-nav>li {
         font-size: 16px;
+        font-weight: 100;
+        letter-spacing: 1px;
         a {
             color: #e7e7e7;
         }
+    }
+    .navbar-nav>li.active {
+        font-weight: 300;
     }
     .navbar-nav>li>a:hover {
         color: #c3c3c3;
