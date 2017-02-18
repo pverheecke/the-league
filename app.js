@@ -5,15 +5,7 @@ const mongojs = require('mongojs');
 const path = require('path');
 const bookshelf = require('bookshelf');
 
-const server = new Hapi.Server({
-    connections: {
-        routes: {
-            files: {
-                relativeTo: path.join(__dirname, "public")
-            }
-        }
-    }
-});
+const server = new Hapi.Server();
 
 const dbConnection = 'mongodb://peter:peterpeter@ds117109.mlab.com:17109/the-league';
 const collections = ['teams', 'players'];
@@ -65,19 +57,14 @@ server.register(plugins, function(err) {
 
     server.route({
         method: 'GET',
-        path: '/',
-        handler: (request, reply) => {
-            reply.file('index.html');
+        path: '/{file*}',
+        handler: {
+            directory: {
+                path: './public/',
+                index: true
+            }
         }
-    });
-
-    server.route({
-        method: 'GET',
-        path: '/{filename}',
-        handler: (request, reply) => {
-            reply.file(encodeURIComponent(request.params.filename));
-        }
-    });
+    })
 
     server.start((err) => {
         if (err) {
