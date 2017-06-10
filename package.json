@@ -1,7 +1,12 @@
 {
-  "name": "the-league-2",
+  "name": "the-league",
   "scripts": {
-    "dev": "webpack --progress --display-error-details --config config/webpack.config.js"
+    "build": "webpack --progress --display-error-details --config config/webpack.config.js",
+    "start": "nodemon app.js",
+    "migrate:make": "knex migrate:make",
+    "migrate": "knex migrate:latest",
+    "seed:make": "knex seed:make",
+    "seed": "knex seed:run"
   },
   "dependencies": {
     "babel-runtime": "^6.22.0",
@@ -9,10 +14,8 @@
     "boom": "^4.2.0",
     "hapi": "^16.1.0",
     "inert": "^4.1.0",
-    "joi": "^10.2.0",
     "knex": "^0.12.6",
-    "mongojs": "^2.4.0",
-    "uuid": "^3.0.1",
+    "pg": "^6.1.2",
     "vue": "^2.1.10",
     "vue-router": "^2.1.3"
   },

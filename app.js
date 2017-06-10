@@ -3,24 +3,19 @@
 const Hapi = require('hapi');
 const mongojs = require('mongojs');
 const path = require('path');
-const bookshelf = require('bookshelf');
+const bookshelf = require('./bookshelf')
 
 const server = new Hapi.Server();
-
-const dbConnection = 'mongodb://peter:peterpeter@ds117109.mlab.com:17109/the-league';
-const collections = ['teams', 'players'];
-
-server.app.db = mongojs(dbConnection, collections);
-
-const plugins = [
-    require('inert'),
-    require('./api/players.js'),
-    require('./api/teams.js')
-];
 
 server.connection({
     port: 5000
 });
+
+const plugins = [
+    require('inert'),
+    require('./routes/player_routes.js'),
+    require('./routes/team_routes.js')
+];
 
 if (process.env.NODE_ENV !== 'production') {
     const WebpackConfig = require('./config/webpack.config.js');
@@ -43,14 +38,14 @@ if (process.env.NODE_ENV !== 'production') {
         }, {
             register: HapiWebpackHotMiddleware
         }
-    ], (err) => {
+    ], err => {
         if (err) {
             throw err;
         }
     });
 }
 
-server.register(plugins, function(err) {
+server.register(plugins, err => {
     if (err) {
         throw err;
     }
@@ -64,9 +59,17 @@ server.register(plugins, function(err) {
                 index: true
             }
         }
-    })
+    });
 
-    server.start((err) => {
+    server.ext('onPostHandler', (request, reply) => {
+        const response = request.response;
+        if (response.isBoom && response.output.statusCode === 404) {
+            return reply.file('./public/index.html');
+        }
+        return reply.continue();
+    });
+
+    server.start(err => {
         if (err) {
             throw err;
         }
